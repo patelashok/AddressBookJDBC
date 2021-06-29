@@ -1,7 +1,4 @@
 package adressbook;
-
-
-
 import org.junit.BeforeClass;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,12 +22,14 @@ public class AddressBookServiceTest {
         List<AddressBookData> addressBookData = addressBookService.readAddressBookData(AddressBookService.IOService.DB_IO);
         Assertions.assertEquals(3, addressBookData.size());
     }
+
     @Test
     public void givenNewCityAndStateForContact_WhenUpdated_ShouldMatch() throws AddressBookException {
         addressBookService.updateContactCityAndState("Sakshi","Pune", "Maharashtra");
         boolean result = addressBookService.checkAddressBookInSyncWithDB("Sakshi");
         Assertions.assertTrue(result);
     }
+
     @Test
     public void givenDateRange_WhenRetrieved_ShouldmatchEmployeeCount() throws AddressBookException {
         addressBookService.readAddressBookData(AddressBookService.IOService.DB_IO);
@@ -40,6 +39,7 @@ public class AddressBookServiceTest {
                 startDate, endDate);
         Assertions.assertEquals(3, employeePayrollData.size());
     }
+
     @Test
     public void givenAddressBookDB_WhenRetrievedCountByState_ShouldReturnCountGroupedByState()
             throws AddressBookException {
@@ -57,6 +57,7 @@ public class AddressBookServiceTest {
         Assertions.assertEquals(1, count.get("Mysore"), 0);
         Assertions.assertEquals(1, count.get("Hyderabad"), 0);
     }
+
     @Test
     public void givenNewEmployee_WhenAdded_ShouldSyncWithDB() throws AddressBookException {
         addressBookService.readAddressBookData(AddressBookService.IOService.DB_IO);
